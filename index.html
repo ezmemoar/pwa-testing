@@ -2,42 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/img/icon-72x72.png" />
+    <link rel="icon" type="image/png" href="img/icon-72x72.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <meta name="mobile-wep-app-capable" content="yes" />
     <meta name="apple-mobile-wep-app-capable" content="yes" /> -->
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="stylesheet" href="/css/bulma.min.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <script src="html.js"></script>
     <title>Welcome</title>
   </head>
   <body>
-    <div class="container">
-      <div class="columns is-multiline">
-        <div class="column is-4">
-          <div class="p-3 has-background-primary has-text-black">First column</div>
+    <nav class="navbar container">
+      <div class="navbar-brand">
+        <div class="navbar-item has-text-white has-text-weight-bold">Logo</div>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a href="about.html" class="navbar-item">About Us</a>
         </div>
-        <div class="column is-4">
-          <div class="p-3 has-background-primary has-text-black">Second column</div>
-        </div>
-        <div class="column is-4">
-          <div class="p-3 has-background-primary has-text-black">Third column</div>
-        </div>
-        <div class="column is-4">
-          <div class="p-3 has-background-primary has-text-black">Fourth column</div>
-        </div>
-        <div class="column is-4">
-          <div class="p-3 has-background-primary has-text-black">Fifth column</div>
-        </div>
+      </div>
+    </nav>
+
+    <div class="mt-3 container">
+      <div id="app" class="columns is-multiline">
       </div>
     </div>
 
-    <script src="/index.js"></script>
+    <script src="index.js"></script>
     <script>
-      const card = `
+      const el = document.getElementById("app");
+      el.innerHTML = eLoading("Loading...", "column is-12");
+
+      const eLocalColumn = (title) => `
         <div class="column is-4">
-          <div class="p-3 has-background-primary has-text-black">Second column</div>
+          ${eCard(title)}
         </div>
       `
+
+      let data = [];
+
+      const setPokemon = () => {
+        el.innerHTML = ""
+        data.forEach((v) => el.insertAdjacentHTML("beforeend", eLocalColumn(v.name)))
+      }
+
+      fetch("https://pokeapi.co/api/v2/pokemon").then((v) => v.json()).then((v) => {
+        data = v.results;
+        setPokemon();
+      });
     </script>
   </body>
 </html>

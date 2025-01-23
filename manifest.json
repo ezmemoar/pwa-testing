@@ -1,25 +1,25 @@
 {
-  "name": "PWA for Tester",
-  // "short_name": "PWA",
-  // "description": "This is a PWA that is used for testing",
-  // "categories": ["education"],
-  // "theme_color": "#FF0A",
-  // "background_color": "#00A",
+  "name": "PWA Tester",
+  "short_name": "PWA Test",
+  "description": "This is a test web for PWA",
+  "categories": ["education"],
+  "theme_color": "#00d1b2",
+  "background_color": "#000",
   "display": "standalone",
-  // "orientation": "portrait-primary",
-  "start_url": "/index.html",
-  // "shortcuts": [
-  //   {
-  //     "name": "Home",
-  //     "url": "/index.html",
-  //     "icons": [
-  //       {
-  //         "src": "/img/icon-96x96.png",
-  //         "sizes": "96x96"
-  //       }
-  //     ]
-  //   }
-  // ],
+  "orientation": "portrait-primary",
+  "start_url": "/",
+  "shortcuts": [
+    {
+      "name": "Home",
+      "url": "/index.html",
+      "icons": [
+        {
+          "src": "/img/icon-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
       "src": "/img/icon-72x72.png",
@@ -42,19 +42,4 @@
       "type": "image/png"
     }
   ]
-  // "screenshots": [
-  //   {
-  //     "src": "/img/ss.png",
-  //     "type": "image/png",
-  //     "sizes": "374x446",
-  //     "label": "Mobile home screen"
-  //   },
-  //   {
-  //     "src": "/img/ss-desktop2.png",
-  //     "type": "image/png",
-  //     "sizes": "320x320",
-  //     "form_factor": "wide",
-  //     "label": "Desktop home screen"
-  //   }
-  // ]
 }
