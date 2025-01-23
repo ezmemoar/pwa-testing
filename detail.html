@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="img/icon-72x72.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-wep-app-capable" content="yes" />
+    <meta name="apple-mobile-wep-app-capable" content="yes" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="css/bulma.min.css" />
+    <script src="html.js"></script>
+    <title>Detail</title>
+  </head>
+  <body>
+    <nav class="navbar container">
+      <div class="navbar-brand">
+        <a href="index.html" class="navbar-item has-text-primary" style="cursor: pointer;">&lArr; Back</div>
+          <a href="index.html" class="navbar-item has-text-white has-text-weight-bold">Logo</div>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a href="index.html" class="navbar-item">Home</a>
+          <a href="about.html" class="navbar-item">About Us</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mt-3 container">
+      <div id="app">
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script>
+      const el = document.getElementById("app");
+      el.innerHTML = eLoading("Loading...", "column is-12");
+
+      const eLocalColumn = (title) => `
+        <div class="column is-4">
+          ${eCard(title, openDetail(title))}
+        </div>
+      `
+
+      const selectedPokemon = localStorage.getItem("selected");
+      let data = {
+        front_default: null,
+        back_default: null,
+        front_shiny: null,
+        back_shiny: null,
+        name: null,
+        types: [],
+      };
+
+      const setPokemon = () => {
+        el.innerHTML = eCard(`
+          <div class="is-flex is-align-items-center">
+            <img src="${data.front_default}" />
+            <img src="${data.back_default}" />
+            <img src="${data.front_shiny}" />
+            <img src="${data.back_shiny}" />
+          </div>
+          <div>Name: ${data.name}</div>
+          <div>Type: <span class="is-size-7 has-text-info">${data.types.join(", ")}</span></div>
+        `);
+      }
+
+      const openDetail = (title) => {
+        console.log(title);
+        localStorage.setItem("selected", title);
+        console.log(localStorage.getItem("selected"));
+        window.open("detail.html", "_self");
+      }
+
+      console.log(selectedPokemon);
+      fetch(`https://pokeapi.co/api/v2/pokemon/${selectedPokemon}`).then((v) => v.json()).then((v) => {
+        data = {
+          front_default: v.sprites.front_default,
+          back_default: v.sprites.back_default,
+          front_shiny: v.sprites.front_shiny,
+          back_shiny: v.sprites.back_shiny,
+          name: v.name,
+          types: v.types.map((v2) => v2.type.name),
+        }
+        setPokemon();
+      });
+    </script>
+  </body>
+</html>

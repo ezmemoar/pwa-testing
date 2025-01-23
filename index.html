@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="img/icon-72x72.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <meta name="mobile-wep-app-capable" content="yes" />
-    <meta name="apple-mobile-wep-app-capable" content="yes" /> -->
+    <meta name="mobile-wep-app-capable" content="yes" />
+    <meta name="apple-mobile-wep-app-capable" content="yes" />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="css/bulma.min.css" />
     <script src="html.js"></script>
-    <title>Welcome</title>
+    <title>List</title>
   </head>
   <body>
     <nav class="navbar container">
       <div class="navbar-brand">
-        <div class="navbar-item has-text-white has-text-weight-bold">Logo</div>
+        <a href="index.html" class="navbar-item has-text-white has-text-weight-bold">Logo</div>
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
+          <a href="index.html" class="navbar-item">Home</a>
           <a href="about.html" class="navbar-item">About Us</a>
         </div>
       </div>
@@ -35,7 +36,7 @@
 
       const eLocalColumn = (title) => `
         <div class="column is-4">
-          ${eCard(title)}
+          ${eCard(title, `openDetail('${title}')`)}
         </div>
       `
 
@@ -44,6 +45,13 @@
       const setPokemon = () => {
         el.innerHTML = ""
         data.forEach((v) => el.insertAdjacentHTML("beforeend", eLocalColumn(v.name)))
+      }
+
+      const openDetail = (title) => {
+        console.log("test");
+        console.log(title);
+        localStorage.setItem("selected", title);
+        window.open("detail.html");
       }
 
       fetch("https://pokeapi.co/api/v2/pokemon").then((v) => v.json()).then((v) => {
