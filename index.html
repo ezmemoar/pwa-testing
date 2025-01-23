@@ -51,7 +51,10 @@
         console.log("test");
         console.log(title);
         localStorage.setItem("selected", title);
-        window.open("detail.html");
+
+        const ael = document.createElement("a");
+        ael.setAttribute("href", "detail.html");
+        ael.click();
       }
 
       fetch("https://pokeapi.co/api/v2/pokemon").then((v) => v.json()).then((v) => {
