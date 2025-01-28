@@ -12,7 +12,16 @@ findCache = async (request) => {
 };
 
 oninstall = (e) => {
-  e.waitUntil(cachePage(["/index.html", "/about.html", "/html.js", "/index.js", "/css/bulma.min.css", "/manifest.json"]));
+  e.waitUntil(
+    cachePage([
+      "index.html",
+      "about.html",
+      "html.js",
+      "index.js",
+      "css/bulma.min.css",
+      "manifest.json",
+    ])
+  );
 };
 
 onactivate = (e) => {
