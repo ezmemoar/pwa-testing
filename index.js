@@ -10,9 +10,9 @@ if ("serviceWorker" in navigator) {
         console.log("Service worker is active.");
       }
 
-      const cache = await caches.open("V1");
-      const res = await cache.matchAll();
-      console.log(res);
+      // const cache = await caches.open("V1");
+      // const res = await cache.matchAll();
+      // console.log(res);
     })
     .catch((err) => console.log(err));
 }
