@@ -1,6 +1,5 @@
 cachePage = async (data) => {
-  const cache = await caches.open("V1");
-  return await cache.addAll(data);
+  await caches.open("V1").then((v) => v.addAll(data));
 };
 
 findCache = async (request) => {
