@@ -1,12 +1,23 @@
-const setCache = async (items) => {
+cachePage = async (data) => {
   const cache = await caches.open("V1");
-  cache.addAll(items);
+  return await cache.addAll(data);
 };
 
-oninstall = async (e) => {
-  e.waitUntil(setCache(["index.html", "about.html"]));
+findCache = async (request) => {
+  const cacheReq = await caches.match(request);
+  if (cacheReq) return cacheReq;
+
+  return fetch(request);
 };
 
-self.addEventListener("activate", () => {
-  console.log("activated");
-});
+oninstall = (e) => {
+  e.waitUntil(cachePage(["/index.html", "/about.html"]));
+};
+
+onactivate = (e) => {
+  console.log("active lah bro");
+};
+
+self.addEventListener("fetch", (e) => {
+  e.respondWith(caches.match(e.request));
+})
