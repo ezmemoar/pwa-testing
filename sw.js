@@ -4,7 +4,7 @@ const setCache = async (items) => {
 };
 
 oninstall = async (e) => {
-  e.waitUntil(setCache(["index.html", "about.html", "css/bulma.min.css"]));
+  e.waitUntil(setCache(["index.html", "about.html"]));
 };
 
 self.addEventListener("activate", () => {
